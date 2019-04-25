@@ -1,2 +1,7 @@
 # TankGame
-Open world tank game to get used to Unreal Engine 4 w/ simple AI, terrain
+
+## Key Points
+* UE Terrain Builder
+* UE AI
+* Advanced controls (C++)
+* Mix UE blueprints and C++
