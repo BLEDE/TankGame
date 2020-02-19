@@ -8,6 +8,7 @@
 
 class UTankBarrel;
 class UTankAimingComponent;
+class UTankMovementComponent;
 class AProjectile;
 
 UCLASS()
@@ -25,10 +26,13 @@ public:
 	void AimAt(FVector HitLocation);
 
 	UFUNCTION(BlueprintCallable)
-		void Fire();
+	void Fire();
 
 protected:
 	UTankAimingComponent* TankAimingComponent = nullptr;
+
+	UPROPERTY(BlueprintReadOnly)
+	UTankMovementComponent* TankMovementComponent = nullptr;
 
 private:
 	// Sets default values for this pawn's properties
@@ -40,14 +44,15 @@ private:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	UPROPERTY(EditAnywhere, Category = Firing)
-		float LaunchSpeed = 400000; // Starting in terms of 100m/s (measures in cm)
+	float LaunchSpeed = 400000; // Starting in terms of 100m/s (measures in cm)
 
 	UPROPERTY(EditAnywhere, Category = Setup)
 	//UClass* ProjectileBlueprint; THIS IS ALT WHICH ALLOWS ANY UCLASS IN SETUP
 	TSubclassOf<AProjectile> ProjectileBlueprint;
 
 	UTankBarrel* Barrel = nullptr; // Local Barrel ref for spawning projectiles
-
+	UPROPERTY(EditAnywhere, Category = Firing)
 	float ReloadTimeInSeconds = 3;
+
 	double LastFiredTime = 0;
 };
